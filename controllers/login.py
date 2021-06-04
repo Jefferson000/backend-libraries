@@ -21,7 +21,7 @@ class login(Resource):
         
         return {"data":data}
 
-    @cross_origin(allow_headers=['X-Requested-With'])
+    # @cross_origin(allow_headers=['X-Requested-With'])
     # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def post(self):
         args = login_post_args.parse_args()
@@ -41,4 +41,9 @@ class login(Resource):
             return 'error de autentificación',404
         mysql_cursor.close()
         # return user_info,201
-        return Response(headers={'Access-Control-Allow-Origin':'*','Access-Control-Allow-Headers':'*'},content_type='application/json', response=str(user_info),status=200)
+        return Response(
+            headers={
+            'Access-Control-Allow-Headers':'Origin, X-Requested-With, Content-Type, Accept, Authorization"',
+            "Access-Control-Allow-Methods":"GET,HEAD,OPTIONS,POST,PUT,DELETE",
+            'Access-Control-Allow-Origin':'*',},
+            content_type='application/json', response=str(user_info),status=200)
