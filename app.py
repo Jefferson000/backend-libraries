@@ -15,9 +15,7 @@ api.add_resource(user,"/user")
 api.add_resource(login,"/login")
 api.add_resource(category,"/category")
 api.add_resource(method,"/method")
-
-cors = CORS(app, resources={r"/foo": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 if __name__ == "__main__":
         app. run(debug=False,port=int("5000"),host='0.0.0.0') #app.run(debug=False)

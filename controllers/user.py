@@ -14,6 +14,7 @@ headers = {}
         #     'You have to login with proper credentials', 401,
         #     {'WWW-Authenticate': 'Basic realm="Login Required"'}) 
 class user(Resource):
+    
     @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def get(self):
         data = []
@@ -32,7 +33,7 @@ class user(Resource):
 
         return Response(headers={'Access-Control-Allow-Origin':'*'},content_type='application/json', response=str(data))
 
-        
+    @cross_origin(allow_headers='*')
     @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def post(self):
         args = user_post_args.parse_args()
