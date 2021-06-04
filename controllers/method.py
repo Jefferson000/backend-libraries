@@ -30,7 +30,7 @@ def createMethod():
     try:
         mysql_cursor.execute(select_statement)
     except:
-        return 'Ya existe una función con ese nombre'
+        return {'error':'Ya existe función con ese nombre'},404
     mysql_cursor.close()
     mysql_cursor = mydb.cursor()
     select_statement = """

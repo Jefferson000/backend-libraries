@@ -10,13 +10,13 @@ def doLogin():
     try:
         mysql_cursor.execute(sql_statement)
     except:
-        return 'Error de autentificación',404
+        return {'error':'error de autentificación'},401
     user_info = {}
     for user_id, name,email in mysql_cursor.fetchall():
         user_info["user_id"]=user_id
         user_info["name"]=name
         user_info["email"]=email
     if user_info =={}:
-        return 'error de autentificación',404
+        return {'error':'error de autentificación'},401
     mysql_cursor.close()
     return {"data":user_info},200
