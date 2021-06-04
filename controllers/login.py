@@ -9,18 +9,6 @@ login_post_args.add_argument("email",type=str,help="the email is needed", requir
 login_post_args.add_argument("password",type=str,help="the passwordt is needed", required=True)
 
 class login(Resource):
-    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
-    def get(self):
-        data = []
-        mysql_cursor = mydb.cursor()
-        sql_statement = "SELECT user_id,name,email FROM sql5416726.account"
-        mysql_cursor.execute(sql_statement)
-        for user_id, name,email in mysql_cursor.fetchall() :
-            data.append({"user_id":user_id,"name":name,"email":email})
-        mysql_cursor.close()
-        
-        return {"data":data}
-
     # @cross_origin(allow_headers=['X-Requested-With'])
     # @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def post(self):
