@@ -22,7 +22,7 @@ def createUser():
     try:
         mysql_cursor.execute(select_statement)
     except:
-        return {'error':'El email ya está registrado'},404
+        return {'error':'El email ya está registrado'},400
     mysql_cursor.close()
     mysql_cursor = mydb.cursor()
     select_statement = """SELECT user_id,name,email FROM sql5416726.account WHERE email='{}'""".format(params["email"])
