@@ -1,8 +1,9 @@
 from flask_restful import Resource, reqparse
-
+from flask_cors import cross_origin
 from config.config import mydb
 
 class category(Resource):
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def get(self):
         data = []
         mysql_cursor = mydb.cursor()

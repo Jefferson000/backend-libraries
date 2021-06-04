@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse
 from flask import request
-
+from flask_cors import cross_origin
 from config.config import mydb
 
 #example to commit variables us-east-1
@@ -12,6 +12,7 @@ method_post_args.add_argument("user_id",type=str,help="the user_id is needed", r
 method_post_args.add_argument("category_id",type=str,help="the category_id is needed", required=True)
 
 class method(Resource):
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def get(self):
         data = []
         query_parms = request.query_string.decode("utf-8")
@@ -31,6 +32,7 @@ class method(Resource):
         mysql_cursor.close()
         return {"data":data}
 
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def post(self):
         args = method_post_args.parse_args()
         mysql_cursor = mydb.cursor()

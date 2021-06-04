@@ -5,7 +5,7 @@ from controllers.user import user
 from controllers.login import login
 from controllers.category import category
 from controllers.method import method
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 

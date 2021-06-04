@@ -1,13 +1,15 @@
+from flask.wrappers import Response
 from flask_restful import Resource, reqparse
-
+from flask import Response
+from flask_cors import cross_origin
 from config.config import mydb
-
 #example to commit variables us-east-1
 login_post_args = reqparse.RequestParser()
 login_post_args.add_argument("email",type=str,help="the email is needed", required=True)
 login_post_args.add_argument("password",type=str,help="the passwordt is needed", required=True)
 
 class login(Resource):
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def get(self):
         data = []
         mysql_cursor = mydb.cursor()
@@ -16,8 +18,10 @@ class login(Resource):
         for user_id, name,email in mysql_cursor.fetchall() :
             data.append({"user_id":user_id,"name":name,"email":email})
         mysql_cursor.close()
+        
         return {"data":data}
 
+    @cross_origin(origin='*',headers=['Content-Type','Authorization'])
     def post(self):
         args = login_post_args.parse_args()
         mysql_cursor = mydb.cursor()
@@ -36,3 +40,4 @@ class login(Resource):
             return 'error de autentificación',404
         mysql_cursor.close()
         return user_info,201
+        # return Response(headers={'Access-Control-Allow-Origin':'*'},content_type='application/json', response=str(user_info),status=200)
