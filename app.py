@@ -1,30 +1,41 @@
 from flask import Flask,request
-from flask_restful import Api
+from flask_cors import cross_origin
 
 from controllers.user import getUser
 from controllers.user import createUser
-from controllers.login import login
-from controllers.category import category
-from controllers.method import method
-from flask_cors import cross_origin
+from controllers.login import doLogin
+from controllers.category import getCategories
+from controllers.method import getMethods
+from controllers.method import createMethod
 
 app = Flask(__name__)
 
-# api = Api(app)
+@app.route("/login",methods=['POST'])
+@cross_origin()
+def login():
+    return doLogin()
 
-# api.add_resource(user,"/user")
-# api.add_resource(login,"/login")
-# api.add_resource(category,"/category")
-# api.add_resource(method,"/method")
-# cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-
-@app.route("/login",methods=['POST','GET'])
+@app.route("/user",methods=['POST','GET'])
 @cross_origin()
 def user():
-    if request.method == 'GET':
-        return getUser()
-    else:
-        return createUser()
-        
+  if request.method == 'POST':
+    return createUser()
+  else:
+    return getUser()
+
+@app.route("/category",methods=['GET'])
+@cross_origin()
+def category():
+  return getCategories()
+
+@app.route("/method",methods=['POST','GET'])
+@cross_origin()
+def method():
+  if request.method == 'POST':
+    return createMethod()
+  else:
+    return getMethods()
+
+
 if __name__ == "__main__":
         app. run(debug=False,port=int("5000"),host='0.0.0.0') #app.run(debug=False)
