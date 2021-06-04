@@ -3,8 +3,9 @@ import os
 
 #MyFreeHosting
 mydb = mysql.connector.connect(
-    host=os.getenv('DB_HOST'),
-    user=os.getenv('DB_USER'),
-    passwd=os.getenv('DB_PASSWORD'),
-    database=os.getenv('DB')
+    host="sql5.freemysqlhosting.net",
+    user="sql5416726",
+    passwd="SPULe7hFzU",
+    database="sql5416726",
+    port="3306"
 )

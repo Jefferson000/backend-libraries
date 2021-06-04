@@ -1,10 +1,10 @@
 import mysql.connector
 
 mydb = mysql.connector.connect(
-    host="104.238.205.84",
-    user="u1543_SRDLH1a89I",
-    passwd="B.KimFW@rO=qqCdplUB+^cXX",
-    database="s1543_libraries",
+    host="sql5.freemysqlhosting.net",
+    user="sql5416726",
+    passwd="SPULe7hFzU",
+    database="sql5416726",
     port="3306"
 )
 

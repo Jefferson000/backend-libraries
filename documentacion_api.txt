@@ -1,0 +1,32 @@
+API_HOST = "https://backend-libraries.herokuapp.com"
+
+User:
+	GET: API_HOST/user			#Bbtiene todos los usuarios
+		
+	POST: API_HOST/user         #Crea un usuario y lo retorna
+		Body: {
+			"name":"Okon",
+			"password": "1111",
+			"email":"okon@gmail.com"
+		}
+
+Login:
+	POST: API_HOST/login      	#Login del usuario y retorna el usuario
+		Body: {
+			"password": "1111",
+			"email":"okon@gmail.com"
+		}
+	
+Category:
+	GET: API_HOST/category		#Obtiene todas las categorías
+	
+Method:
+	POST: API_HOST/method		#Crea una función y la retorna
+		Body:{
+			"method_name":"localhost",
+			"method_code": "esto no hace nada",
+			"method_description":"no hay una descripción mejor",
+			"user_id":1,
+			"category_id":2
+		}
+	GET: API_HOST/method?criteria="lo que le de"	#Obtiene las funciones, se usa criteria para filtrar por todo
