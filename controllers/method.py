@@ -12,8 +12,8 @@ def getMethods():
     mysql_cursor = mydb.cursor()
     select_statement = """
         SELECT m.method_id as method_id, m.name as method_name, m.code as method_code, m.description as method_description,a.name as user_name,c.name as category_name FROM sql5416726.method as m 
-        INNER JOIN sql5416726.account as a ON a.user_id = m.user_id
-        INNER JOIN sql5416726.category as c ON c.category_id = m.category_id
+        INNER JOIN sql5418609.account as a ON a.user_id = m.user_id
+        INNER JOIN sql5418609.category as c ON c.category_id = m.category_id
         WHERE m.name LIKE '%{}%' OR a.name LIKE '%{}%' OR c.name LIKE '%{}%';""".format(criteria,criteria,criteria)
     mysql_cursor.execute(select_statement)
     for method_id,method_name, method_code,method_description,user_name,category_name in mysql_cursor.fetchall() :
@@ -24,7 +24,7 @@ def getMethods():
 def createMethod():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()
-    select_statement = """INSERT INTO sql5416726.method(name,code,description,user_id,category_id) 
+    select_statement = """INSERT INTO sql5418609.method(name,code,description,user_id,category_id) 
     VALUES('{}','{}','{}',{},{});""".format(params["method_name"],params["method_code"],params["method_description"],params["user_id"],params["category_id"])
     print(select_statement)
     try:
@@ -35,8 +35,8 @@ def createMethod():
     mysql_cursor = mydb.cursor()
     select_statement = """
         SELECT m.method_id as method_id, m.name as method_name, m.code as method_code, m.description as method_description,a.name as user_name,c.name as category_name FROM sql5416726.method as m 
-        INNER JOIN sql5416726.account as a ON a.user_id = m.user_id
-        INNER JOIN sql5416726.category as c ON c.category_id = m.category_id WHERE m.name='{}'""".format(params["method_name"])
+        INNER JOIN sql5418609.account as a ON a.user_id = m.user_id
+        INNER JOIN sql5418609.category as c ON c.category_id = m.category_id WHERE m.name='{}'""".format(params["method_name"])
     mysql_cursor.execute(select_statement)
     user_info = {}
     for method_id,method_name, method_code,method_description,user_name,category_name  in mysql_cursor.fetchall() :

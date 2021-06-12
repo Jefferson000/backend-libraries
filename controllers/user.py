@@ -7,7 +7,7 @@ import json
 def getUser():
     data = []
     mysql_cursor = mydb.cursor()
-    select_statement = "SELECT user_id,name,email FROM sql5416726.account"
+    select_statement = "SELECT user_id,name,email FROM sql5418609.account"
     mysql_cursor.execute(select_statement)
     for user_id, name,email in mysql_cursor.fetchall() :
         data.append({"user_id":user_id,"name":name,"email":email})
@@ -17,7 +17,7 @@ def getUser():
 def createUser():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()
-    select_statement = """INSERT INTO sql5416726.account(name,email,password) VALUES('{}','{}','{}');""".format(params["name"],params["email"],params["password"])
+    select_statement = """INSERT INTO sql5418609.account(name,email,password) VALUES('{}','{}','{}');""".format(params["name"],params["email"],params["password"])
     print(select_statement)
     try:
         mysql_cursor.execute(select_statement)
@@ -25,7 +25,7 @@ def createUser():
         return {'error':'El email ya está registrado'},400
     mysql_cursor.close()
     mysql_cursor = mydb.cursor()
-    select_statement = """SELECT user_id,name,email FROM sql5416726.account WHERE email='{}'""".format(params["email"])
+    select_statement = """SELECT user_id,name,email FROM sql5418609.account WHERE email='{}'""".format(params["email"])
     mysql_cursor.execute(select_statement)
     user_info = {}
     for user_id, name,email in mysql_cursor.fetchall() :
