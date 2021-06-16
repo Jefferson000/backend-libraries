@@ -2,6 +2,8 @@ from flask import request
 from config.config import mydb
 import json
 
+#Controlador para obtener las funciones filtradas en caso de ser necesario, parámetros opcionales:
+#criteria (es el texto por el que se va a filtrar por todos los atributos)
 def getMethods():
     data = []
     query_parms = request.query_string.decode("utf-8")
@@ -21,6 +23,8 @@ def getMethods():
     mysql_cursor.close()
     return {"data":data}
 
+#Controlador para crear funciones en el sistema, parámetros requeridos:
+#mehtod_name, methos_description,user_id,category_id
 def createMethod():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()

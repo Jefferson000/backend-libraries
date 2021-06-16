@@ -4,6 +4,7 @@ from flask_cors import cross_origin
 from config.config import mydb
 import json
 
+#Controlador para obtener un usuario del sistema, no hay parámetros requeridos
 def getUser():
     data = []
     mysql_cursor = mydb.cursor()
@@ -14,6 +15,8 @@ def getUser():
     mysql_cursor.close()
     return {'data':data},200
 
+#Controlador para crear usuarios e insertarlos en la base de datos, parámetros requeridos:
+# name,email,password
 def createUser():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()

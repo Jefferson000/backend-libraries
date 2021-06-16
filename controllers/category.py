@@ -2,6 +2,7 @@ from flask_restful import Resource, reqparse
 from flask_cors import cross_origin
 from config.config import mydb
 
+#Controlador para obtener las categorías, no hay parámetros requeridos
 def getCategories():
     data = []
     mysql_cursor = mydb.cursor()

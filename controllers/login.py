@@ -2,6 +2,8 @@ from flask import request
 from config.config import mydb
 import json 
 
+# Controlador par iniciar sesión en el sistema, parámetros requeridos:
+# email, password
 def doLogin():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()

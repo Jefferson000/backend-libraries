@@ -10,11 +10,14 @@ from controllers.method import createMethod
 
 app = Flask(__name__)
 
+
+#Ruta para inico de sesión
 @app.route("/login",methods=['POST'])
 @cross_origin()
 def login():
     return doLogin()
 
+#Ruta para obtener información de usuarios y registro
 @app.route("/user",methods=['POST','GET'])
 @cross_origin()
 def user():
@@ -23,11 +26,13 @@ def user():
   else:
     return getUser()
 
+#Ruta para obtener las categorías
 @app.route("/category",methods=['GET'])
 @cross_origin()
 def category():
   return getCategories()
 
+#Ruta para obtener y agregar las funciones
 @app.route("/method",methods=['POST','GET'])
 @cross_origin()
 def method():
