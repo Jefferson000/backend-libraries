@@ -29,7 +29,7 @@ def createMethod():
     params = json.loads(request.data.decode('utf-8'))
     mysql_cursor = mydb.cursor()
     select_statement = """INSERT INTO sql5418609.method(name,code,description,user_id,category_id) 
-    VALUES('{}','{}','{}',{},{});""".format(params["method_name"],params["method_code"],params["method_description"],params["user_id"],params["category_id"])
+    VALUES("{}",'{}','{}',{},{});""".format(params["method_name"],params["method_code"].replace('\"','\''),params["method_description"],params["user_id"],params["category_id"])
     print(select_statement)
     try:
         mysql_cursor.execute(select_statement)
